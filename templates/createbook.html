@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename= 'css/index.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static', filename= 'css/create.css') }}" rel="stylesheet" type="text/css">
+    <title>Редактор книги</title>
+</head>
+<body>
+    {% block content %}
+    <div id="main-cont">
+        <div id="col-1" class="container">
+            <h2>Меню</h2>
+            <button id="to-the-main">На главную</button>
+            <button id="createbook" class="focus">Записать книгу</button>
+        </div>
+        <div id="col-2" class="container">
+            <h1>{{ title }}</h1>
+            <form method="POST">
+                <div>
+                    <div>
+                        <p>
+                            <span>Название книги: </span>
+                            <input type="text" name="name" class="text-input" value="{{ request.form['name'] }}">
+                        </p>
+                        <p>
+                            {% for ctgr, msg in get_flashed_messages(True) %}
+                                {% if ctgr == 'error' and msg == 'name' %}
+                                    <span class="error">Это поле обязательно для заполнения!</span>
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <span>Автор: </span>
+                            <select name="author-select" class="text-input" data-value="{{ request.form['author-select'] }}">
+                                {% for author in authors %}
+                                    <option value="{{ author }}">{{ author }}</option>
+                                {% endfor %}
+                            </select>
+                        </p>
+                        <p class="hidden" id="author">
+                            <span>Введите нового автора: </span>
+                            <input type="text" name="author-input" class="text-input" value="{{ request.form['author-input'] }}">
+                        </p>
+                        <p>
+                            {% for ctgr, msg in get_flashed_messages(True) %}
+                                {% if ctgr == 'error' and msg == 'author' %}
+                                    <span class="error">Это поле обязательно для заполнения!</span>
+                                {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <span>Издательство: </span>
+                            <select name="p_office-select" class="text-input" data-value="{{ request.form['p_office-select'] }}">
+                                {% for p_office in p_offices %}
+                                    <option value="{{ p_office }}">{{ p_office }}</option>
+                                {% endfor %}
+                            </select>
+                        </p>
+                        <p class="hidden" id="p_office">
+                            <span>Введите новое издательство: </span>
+                            <input type="text" name="p_office-input" class="text-input" value="{{ request.form['p_office-input'] }}">
+                        </p>
+                    </div>
+                    <p>
+                        <span>Год издания: </span>
+                        <input type="number" name="year" class="text-input" value="{{ request.form['year'] }}">
+                    </p>
+                </div>
+                <div>
+                    <p><span>Аннотация</span></p>
+                    <textarea name="annotation" placeholder="Опишите книгу несколькими предложениями" class="text-input" value="{{ request.form['annotation'] }}"></textarea>
+                </div>
+                <div>
+                    <p>
+                        <span>Серия, которой принадлежит книга: </span>
+                        <select name="series-select" class="text-input" data-value="{{ request.form['series-select'] }}">
+                            {% for s in series %}
+                                <option value="{{ s }}">{{ s }}</option>
+                            {% endfor %}
+                        </select>
+                    </p>
+                    <p class="hidden" id="series">
+                        <span>Название новой серии книг: </span>
+                        <input type="text" name="series-input" class="text-input" value="{{ request.form['series-input'] }}">
+                    </p>
+                    <p class="hidden" id="part">
+                        <span>Номер книги в серии: </span>
+                        <input type="number" name="part" class="text-input" value="{{ request.form['part'] }}">
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        <span id="belongF" data-value="{{ request.form['belong-film'] }}">У данной книги есть экранизации? </span>
+                        <span class="radio"><input type="radio" value="true" name="belong-film"> Да</span>
+                        <span class="radio"><input type="radio" value="false" name="belong-film"> Нет</span>
+                    </p>
+                    <div class="hidden" id="film">
+                        <p><span>Экранизации</span></p>
+                        <textarea name="film-adapt" placeholder="Напишите сведения об экранизациях данной книги" class="text-input" value="{{ request.form['film-adapt'] }}"></textarea>
+                    </div>
+                </div>
+                <div>
+                    <p>Скоро здесь можно будет также загрузить обложку для книги</p>
+                    <p>
+                        <span>А пока...<br>Введите ссылку на обложку книги: </span>
+                        <input type="text" name="cover" class="text-input" value="{{ request.form['cover'] }}">
+                    </p>
+                </div>
+            </form>
+            <div>
+                <button id="ready" class="focus">Готово</button>
+                <button id="cancel">Отмена</button>
+            </div>
+        </div>
+        <div id="col-3" class="container"><h2>Реклама</h2></div>
+    </div>
+    {% endblock %}
+    <script src="{{ url_for('static', filename= 'js/menu.js') }}"></script>
+    <script src="{{ url_for('static', filename= 'js/createbook.js') }}"></script>
+</body>
+</html>

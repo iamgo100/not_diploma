@@ -1,0 +1,39 @@
+.hidden {
+    display: none;
+}
+#col-2 {
+    align-items: flex-start;
+    padding: 2px 10px;
+}
+p {
+    font-size: 20px;
+}
+textarea {
+    width: 80%;
+    height: 100px;
+    resize: none;
+}
+.text-input {
+    background-color: inherit;
+    border: solid 2px #666;
+    border-radius: 2px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    color: rgb(155, 196, 196);
+    font-size: 16px;
+    margin: 0px;
+    padding: 2px;
+}
+.radio {
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 18px;
+    color: rgb(155, 196, 196);
+}
+form {
+    width: 100%;
+}
+.error {
+    color: lightcoral;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}

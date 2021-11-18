@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ url_for('static', filename= 'css/index.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ url_for('static', filename= 'css/books.css') }}" rel="stylesheet" type="text/css">
+        <title>{% block title %}{{ entry[1] }}{% endblock %}</title>
+    </head>
+    <body>
+        {% block content %}
+        <div id="main-cont">
+            <div id=col-1 class=container>
+                <h2>Меню</h2>
+                <button id="to-the-main">На главную</button>
+                <button id="createbook">Записать книгу</button>
+            </div>
+            <div id=col-2 class=container>
+                <div id="header">
+                    <!-- https://c.radikal.ru/c19/2011/f6/accb6a5078a0.jpg -->
+                    <div id="cover-cont">
+                        {% if entry[6] %}
+                        <img src="{{ entry[6] }}" alt="Обложка книги" id="cover">
+                        {% else %}
+                        <img src="https://c.radikal.ru/c19/2011/f6/accb6a5078a0.jpg" alt="Нет обложки" id="cover">
+                        {% endif %}
+                    </div>
+                    <div id="main-info">
+                        <h1 id="name">{{ entry[1] }}</h1>
+                        <p id="author"><span class="header">Автор: </span><span>{{ entry[2] }}</span></p>
+                        {% if entry[4] %}
+                        <p id="year"><span class="header">Год издания: </span><span>{{ entry[4] }}</span></p>
+                        {% endif %}
+                        {% if entry[3] %}
+                        <p id="p-office"><span class="header">Издательство: </span><span>{{ entry[3] }}</span></p>
+                        {% endif %}
+                        {% if entry[7] %}
+                            {% if entry[8] %}
+                            <p id="series"><span class="header">Серия: </span><span>{{ entry[7] }}. Книга {{ entry[8] }}</span></p>
+                            {% else %}
+                            <p id="series"><span class="header">Серия: </span><span>{{ entry[7] }}</span></p>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div id="bottom">
+                    {% if entry[5] %}
+                    <div id="annotation" class="text-cont">
+                        <h2>Аннотация</h2>
+                        <p id="annot-text">{{ entry[5] }}</p>
+                    </div>
+                    {% endif %}
+                    {% if entry[9] %}
+                    <div id="film-adapt" class="text-cont">
+                        <h2>Экранизации</h2>
+                        <p id="film-text">{{ entry[9] }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div id=col-3 class=container><h2>Реклама</h2></div>
+        </div>
+        {% endblock %}
+        <script src="{{ url_for('static', filename= 'js/menu.js') }}"></script>
+        <script src="{{ url_for('static', filename= 'js/book.js') }}"></script>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+#header {
+    margin-top: 30px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+#header p {
+    font-size: 20px;
+}
+#main-info {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-left: 20px;
+}
+#cover {
+    max-height: 300px;
+    border-radius: 15px;
+    border: solid 5px rgb(51,102,255);
+}
+#bottom {
+    width: 90%;
+    margin-top: 10px;
+}
+.text-cont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

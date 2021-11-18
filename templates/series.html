@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ url_for('static', filename= 'css/index.css') }}" rel="stylesheet" type="text/css">
+        <title>Series</title>
+    </head>
+    <body>
+        <div id="main-cont">
+            <div id=col-1 class=container>
+                <h2>Меню</h2>
+                <button id="to-the-main">На главную</button>
+            </div>
+            <div id=col-2 class=container>
+                <div id="main-info">
+                    <h1 id="name">{{ entry[1] }}</h1>
+                    {% if entry[2] %}
+                    <p id="author"><span class="header">Автор: </span><span>{{ entry[2] }}</span></p>
+                    {% else %}
+                    <p id="author"><span class="header">Автор: </span><span>Неизвестен</span></p>
+                    {% endif %}
+                    {% if entry[4] %}
+                    <p id="p-office"><span class="header">Издательство: </span><span>{{ entry[4] }}</span></p>
+                    {% endif %}
+                    {% if entry[3] %}
+                    <p id="interpreter"><span class="header">Переводчик: </span><span>{{ entry[3] }}</span></p>
+                    {% endif %}
+                </div>
+                <div id="annotation" class="text-cont">
+                    <h2>Аннотация</h2>
+                    <p id="annot-text">{{ entry[5] }}</p>
+                </div>
+                <div id="sequence" class="text-cont">
+                    <h2>Хроника</h2>
+                    <p id="sequence-text">
+                        <ul>
+                            {% for part in entry[6] %}
+                                <li>{{ part }}</li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div id=col-3 class=container><h2>Реклама</h2></div>
+        </div>
+        <script src="{{ url_for('static', filename= 'js/menu.js') }}"></script>
+    </body>
+</html>
